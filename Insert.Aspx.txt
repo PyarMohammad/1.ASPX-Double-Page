@@ -1,0 +1,98 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Insert.aspx.cs" Inherits="test61119.Insert" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+
+    <script type="text/javascript">
+
+        function alok() {
+            var dabba = "";
+
+            dabba += checkname();
+            dabba += checkgender();
+            dabba += checkcountry();          
+
+            if (dabba == "") {
+                return true;
+            }
+            else {
+                alert(dabba);
+                return false;
+            }
+        }
+        function checkname() {
+            var TB = document.getElementById('txtname');
+            if (TB.value == "") {
+                return 'Please enter your name\n';
+            }
+            else {
+                return "";
+            }
+        }
+        function checkgender() {
+            var x = document.getElementById('rbl');
+            var y = x.getElementsByTagName('input');
+            var ischecked = "";
+
+            for (var i = 0; i < y.length; i++) {
+                if (y[i].checked == true) {
+                    ischecked = "pyar";
+                    break;
+                }
+            }
+            if (ischecked == "") {
+                ischecked = 'Please your select gender\n';
+            }
+            else {
+                ischecked = "";
+            }
+            return ischecked;
+        }
+        function checkcountry() {
+            var TB = document.getElementById('ddlcountry');
+            if (TB.value == "0") {
+                return 'Please enter your country\n';
+            }
+            else {
+                return "";
+            }
+        }
+
+    </script>
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td>
+                        <asp:TextBox ID="txtname" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>
+                        <asp:RadioButtonList ID="rbl" runat="server" RepeatColumns="3">
+                            <asp:ListItem Value="1" Text="male"></asp:ListItem>
+                            <asp:ListItem Value="2" Text="female"></asp:ListItem>
+                            <asp:ListItem Value="3" Text="other"></asp:ListItem>
+                        </asp:RadioButtonList>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Country</td>
+                    <td>
+                        <asp:DropDownList ID="ddlcountry" runat="server"></asp:DropDownList></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <asp:Button ID="btnsave" runat="server" Text="SAVE" OnClientClick="return alok()" OnClick="btnsave_Click" /></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
